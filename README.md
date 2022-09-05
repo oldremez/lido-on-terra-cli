@@ -19,10 +19,13 @@ Luna/Lunac, stLuna/stLUNAC, bLuna/bLUNAC are interchangable.
 To proceed using this manual, one need to:
 
 1. Install terrad (please follow the official manual
-([1])[https://docs.terra.money/docs/develop/terrad/install-terrad.html]
-([2])[https://docs.terra.money/docs/develop/terrad/terrad-mac.html])
-2. (Congigure one's keys via keychain)
-[https://docs.terra.money/docs/develop/terrad/subcommands.html#keys-add]
+([[1]](https://docs.terra.money/docs/develop/terrad/install-terrad.html)
+[[2]](https://docs.terra.money/docs/develop/terrad/terrad-mac.html]))
+2. [Congigure one's keys via keychain]
+(https://docs.terra.money/docs/develop/terrad/subcommands.html#keys-add)
+
+If you have an issue with recovering your key (e.g. you lost your seed phrase)
+you can create a new account and send your tokens there via wallet extension.
 
 ## How to interact with Lido contracts via CLI
 
@@ -37,7 +40,7 @@ appropriate interfaces.
 
 After any transaction made via CLI you'll receive an ouput with transaction hash
 (e.g. `txhash: BDB45045BCA14D2B696E2C7A6D3FCEFB27E61669947E72A198CB66BAE5ED0AFA`
-) that you can check via (Finder)[https://finder.terra.money/classic].
+) that you can check via [Finder](https://finder.terra.money/classic).
 Transaction might be not found because of several reasons:
 
 1. Transaction still not processed
@@ -62,8 +65,8 @@ For stLUNAC
 
 ```
 terrad query wasm contract-store \
-    terra1ucxftqm3hx6kxq9den984lypuwdq3uknft4kla \
-    '{"balance":{"address":"terra1gxlpqnxszu6ltfa69ska8t3xaz3auxfkfayvhw"}}' \
+    terra1yg3j2s986nyp5z7r2lvt0hx3r0lnd7kwvwwtsc \
+    '{"balance":{"address":"YOUR_TERRA_ADDRESS_HERE"}}' \
     --node="http://public-node.terra.dev:26657" \
     --chain-id=columbus-5
 ```
@@ -72,8 +75,8 @@ For bLUNAC
 
 ```
 terrad query wasm contract-store \
-    terra1ucxftqm3hx6kxq9den984lypuwdq3uknft4kla \
-    '{"balance":{"address":"terra1gxlpqnxszu6ltfa69ska8t3xaz3auxfkfayvhw"}}' \
+    terra1kc87mu460fwkqte29rquh4hc20m54fxwtsx7gp \
+    '{"balance":{"address":"YOUR_TERRA_ADDRESS_HERE"}}' \
     --node="http://public-node.terra.dev:26657" \
     --chain-id=columbus-5
 ```
@@ -82,7 +85,7 @@ For LUNC/USTC
 
 ```
 terrad query bank balances \
-    terra1ucxftqm3hx6kxq9den984lypuwdq3uknft4kla \
+    YOUR_TERRA_ADDRESS_HERE \
     --node="http://public-node.terra.dev:26657" \
     --chain-id=columbus-5
 ```
@@ -96,7 +99,7 @@ terrad tx wasm execute \
     terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts \
     '{"bond":{}}' \
     1uluna \
-    --from=terra1ucxftqm3hx6kxq9den984lypuwdq3uknft4kla \
+    --from=YOUR_TERRA_ADDRESS_HERE \
     --node="http://public-node.terra.dev:26657" \
     --chain-id=columbus-5 \
     --fees=6000000uusd \
@@ -111,7 +114,7 @@ terrad tx wasm execute \
     terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts \
     '{"bond_for_stluna":{}}' \
     1uluna \
-    --from=terra1ucxftqm3hx6kxq9den984lypuwdq3uknft4kla \
+    --from=YOUR_TERRA_ADDRESS_HERE \
     --node="http://public-node.terra.dev:26657" \
     --chain-id=columbus-5 \
     --fees=6000000uusd \
@@ -124,7 +127,7 @@ terrad tx wasm execute \
 WARNING:
 Unbonding doesn't happen instantly. If you want to convert your bLUNAC/stLUNAC
 to LUNAC instantly you might use
-(Astroport)[https://classic.astroport.fi/swap?from=terra1yg3j2s986nyp5z7r2lvt0hx3r0lnd7kwvwwtsc&to=uluna]
+[Astroport](https://classic.astroport.fi/swap?from=terra1yg3j2s986nyp5z7r2lvt0hx3r0lnd7kwvwwtsc&to=uluna)
 for it.
 
 To unbond your tokens you need to send them to the Hub and specify which action
@@ -136,7 +139,7 @@ terrad tx wasm execute \
     terra1yg3j2s986nyp5z7r2lvt0hx3r0lnd7kwvwwtsc \
     '{"send": {"amount": "1","contract": "terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts","msg": "eyJ1bmJvbmQiOnt9fQ=="}}' \
     [] \
-    --from=terra1ucxftqm3hx6kxq9den984lypuwdq3uknft4kla \
+    --from=YOUR_TERRA_ADDRESS_HERE \
     --node="http://public-node.terra.dev:26657" \
     --chain-id=columbus-5 \
     --fees=6000000uusd \
@@ -151,7 +154,7 @@ terrad tx wasm execute \
     terra1kc87mu460fwkqte29rquh4hc20m54fxwtsx7gp \
     '{"send": {"amount": "1","contract": "terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts","msg": "eyJ1bmJvbmQiOnt9fQ=="}}' \
     [] \
-    --from=terra1ucxftqm3hx6kxq9den984lypuwdq3uknft4kla \
+    --from=YOUR_TERRA_ADDRESS_HERE \
     --node="http://public-node.terra.dev:26657" \
     --chain-id=columbus-5 \
     --fees=6000000uusd \
@@ -161,14 +164,24 @@ terrad tx wasm execute \
 
 ### Claim rewards
 
+To check the amount of rewards to be claimed
+
+```
+terrad query wasm contract-store \
+    terra17yap3mhph35pcwvhza38c2lkj7gzywzy05h7l0 \
+    '{"accrued_rewards":{"address":"YOUR_TERRA_ADDRESS_HERE"}}' \
+    --node="http://public-node.terra.dev:26657" \
+    --chain-id=columbus-5
+```
+
 To claim rewards you can use 
 
 ```
 terrad tx wasm execute \
     terra17yap3mhph35pcwvhza38c2lkj7gzywzy05h7l0 \
-    '{"claim_rewards":{"recipient": "terra1ucxftqm3hx6kxq9den984lypuwdq3uknft4kla"}}' \
+    '{"claim_rewards":{"recipient": "YOUR_TERRA_ADDRESS_HERE"}}' \
     [] \
-    --from=terra1ucxftqm3hx6kxq9den984lypuwdq3uknft4kla \
+    --from=YOUR_TERRA_ADDRESS_HERE \
     --node="http://public-node.terra.dev:26657" \
     --chain-id=columbus-5 \
     --fees=6000000uusd \
@@ -181,7 +194,11 @@ terrad tx wasm execute \
 Check amount to withdraw
 
 ```
-terrad ????????????????????????????
+terrad query wasm contract-store \
+    terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts \
+    '{"withdrawable_unbonded":{"address":"YOUR_TERRA_ADDRESS_HERE"}}' \
+    --node="http://public-node.terra.dev:26657" \
+    --chain-id=columbus-5
 ```
 
 Actual withdraw
@@ -191,7 +208,7 @@ terrad tx wasm execute \
     terra17yap3mhph35pcwvhza38c2lkj7gzywzy05h7l0 \
     '{"withdraw_unbonded": {}}' \
     [] \
-    --from=terra1ucxftqm3hx6kxq9den984lypuwdq3uknft4kla \
+    --from=YOUR_TERRA_ADDRESS_HERE \
     --node="http://public-node.terra.dev:26657" \
     --chain-id=columbus-5 \
     --fees=6000000uusd \
@@ -201,10 +218,10 @@ terrad tx wasm execute \
 
 #### Unbond wen???
 
-While doing an unbond you might be interested in when your rewards can be
-claimed. To do so, you need to execute several things:
-
-`terrad make awesome tx`
+The process of prediction of the unbonding the specific request is kinda
+difficlut to process it manualy via CLI. It's going to be described later. For
+now, we recommend to track the transaction when you made an unbonding request
+and add 22 days to it.
 
 ### Convert stLUNAC to bLUNAC or vice-verca
 
@@ -213,9 +230,9 @@ Bla-bla-bla
 ```
 terrad tx wasm execute \
     terra1yg3j2s986nyp5z7r2lvt0hx3r0lnd7kwvwwtsc \
-    '{"send": {"amount": "1","contract": "terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts","msg": ""?????????????=="}}' \
+    '{"send": {"amount": "1","contract": "terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts","msg": "e2NvbnZlcnQ6e319"}}' \
     [] \
-    --from=terra1ucxftqm3hx6kxq9den984lypuwdq3uknft4kla \
+    --from=YOUR_TERRA_ADDRESS_HERE \
     --node="http://public-node.terra.dev:26657" \
     --chain-id=columbus-5 \
     --fees=6000000uusd \
@@ -228,9 +245,9 @@ For bLuna:
 ```
 terrad tx wasm execute \
     terra1kc87mu460fwkqte29rquh4hc20m54fxwtsx7gp \
-    '{"send": {"amount": "1","contract": "terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts","msg": "?????????????=="}}' \
+    '{"send": {"amount": "1","contract": "terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts","msg": "e2NvbnZlcnQ6e319"}}' \
     [] \
-    --from=terra1ucxftqm3hx6kxq9den984lypuwdq3uknft4kla \
+    --from=YOUR_TERRA_ADDRESS_HERE \
     --node="http://public-node.terra.dev:26657" \
     --chain-id=columbus-5 \
     --fees=6000000uusd \
@@ -251,7 +268,7 @@ terrad tx wasm execute \
     terra1kc87mu460fwkqte29rquh4hc20m54fxwtsx7gp \
     '{"update_global_index": {}}' \
     [] \
-    --from=terra1ucxftqm3hx6kxq9den984lypuwdq3uknft4kla \
+    --from=YOUR_TERRA_ADDRESS_HERE \
     --node="http://public-node.terra.dev:26657" \
     --chain-id=columbus-5 \
     --fees=6000000uusd \
