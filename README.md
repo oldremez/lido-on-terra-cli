@@ -21,10 +21,7 @@ To proceed using this manual, one need to:
 1. Install terrad (please follow the official manual
 ([[1]](https://docs.terra.money/docs/develop/terrad/install-terrad.html)
 [[2]](https://docs.terra.money/docs/develop/terrad/terrad-mac.html))
-2. [Congigure one's keys via keychain](https://docs.terra.money/docs/develop/terrad/subcommands.html#keys-add)
-
-If you have an issue with recovering your key (e.g. you lost your seed phrase)
-you can create a new account and send your tokens there via wallet extension.
+2. [Congigure your keys via keychain](https://docs.terra.money/docs/develop/terrad/subcommands.html#keys-add)
 
 ## How to interact with Lido contracts via CLI
 
@@ -114,7 +111,7 @@ To get stLUNAC:
 ```
 terrad tx wasm execute \
     terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts \
-    '{"bond_for_stluna":{}}' \
+    '{"bond_for_st_luna":{}}' \
     AMOUNT_OF_ULUNA_TO_BONDuluna \
     --from=YOUR_TERRA_ADDRESS_HERE \
     --node="http://public-node.terra.dev:26657" \
