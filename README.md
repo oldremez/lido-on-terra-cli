@@ -46,6 +46,13 @@ Transaction might be not found because of several reasons:
 In cases 1 and 2 you should wait (1 minute should be more than enough). In case
 3 please analize the output to figure out possible reasons.
 
+All the commands from this manual has placeholders. Before running any of them,
+one need to paste replace `YOUR_TERRA_ADDRESS_HERE` with their terra address and
+`AMOUNT_OF_XXX_TO_YYY` with the decimal amount.
+
+All the other parameters can be checked via "Parameters and how to check them"
+at the end of the manual.
+
 ### Know your stLUNAC/bLUNAC balance
 
 Because all the operations are made with ustluna or ubluna (`u` here stands for
@@ -131,14 +138,15 @@ to LUNAC instantly you might use
 for it.
 
 To unbond your tokens you need to send them to the Hub and specify which action
-you wish to do with them (unbond or convert). To unbond stLUNAC use the
-following command:
+you wish to do with them (unbond or convert).
+
+To unbond stLUNAC use the following command:
 
 ```
 terrad tx wasm execute \
     terra1yg3j2s986nyp5z7r2lvt0hx3r0lnd7kwvwwtsc \
-    '{"send": {"amount": "1","contract": "terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts","msg": "eyJ1bmJvbmQiOnt9fQ=="}}' \
-    [] \
+    '{"send": {"amount": "AMOUNT_OF_USTLUNA_TO_UNBOND","contract": "terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts","msg": "eyJ1bmJvbmQiOnt9fQ=="}}' \
+    0uluna \
     --from=YOUR_TERRA_ADDRESS_HERE \
     --node="http://public-node.terra.dev:26657" \
     --chain-id=columbus-5 \
@@ -153,8 +161,8 @@ For bLuna:
 ```
 terrad tx wasm execute \
     terra1kc87mu460fwkqte29rquh4hc20m54fxwtsx7gp \
-    '{"send": {"amount": "1","contract": "terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts","msg": "eyJ1bmJvbmQiOnt9fQ=="}}' \
-    [] \
+    '{"send": {"amount": "AMOUNT_OF_UBLUNA_TO_UNBOND","contract": "terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts","msg": "eyJ1bmJvbmQiOnt9fQ=="}}' \
+    0uluna \
     --from=YOUR_TERRA_ADDRESS_HERE \
     --node="http://public-node.terra.dev:26657" \
     --chain-id=columbus-5 \
@@ -182,7 +190,7 @@ To claim rewards use the command:
 terrad tx wasm execute \
     terra17yap3mhph35pcwvhza38c2lkj7gzywzy05h7l0 \
     '{"claim_rewards":{"recipient": "YOUR_TERRA_ADDRESS_HERE"}}' \
-    [] \
+    0uluna \
     --from=YOUR_TERRA_ADDRESS_HERE \
     --node="http://public-node.terra.dev:26657" \
     --chain-id=columbus-5 \
@@ -208,9 +216,9 @@ To actualy withdraw rewards:
 
 ```
 terrad tx wasm execute \
-    terra17yap3mhph35pcwvhza38c2lkj7gzywzy05h7l0 \
+    terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts \
     '{"withdraw_unbonded": {}}' \
-    [] \
+    0uluna \
     --from=YOUR_TERRA_ADDRESS_HERE \
     --node="http://public-node.terra.dev:26657" \
     --chain-id=columbus-5 \
@@ -229,13 +237,15 @@ and add 22 days to it.
 
 ### Convert stLUNAC to bLUNAC or vice-verca
 
-Bla-bla-bla
+You can swap bLUNAC to stLUNAC or vice-versa with the following commands:
+
+Convert stLUNAC to bLUNAC:
 
 ```
 terrad tx wasm execute \
     terra1yg3j2s986nyp5z7r2lvt0hx3r0lnd7kwvwwtsc \
-    '{"send": {"amount": "1","contract": "terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts","msg": "e2NvbnZlcnQ6e319"}}' \
-    [] \
+    '{"send": {"amount": "AMOUNT_OF_USTLUNA_TO_CONVERT","contract": "terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts","msg": "eyJjb252ZXJ0Ijp7fX0="}}' \
+    0uluna \
     --from=YOUR_TERRA_ADDRESS_HERE \
     --node="http://public-node.terra.dev:26657" \
     --chain-id=columbus-5 \
@@ -245,13 +255,13 @@ terrad tx wasm execute \
     --yes
 ```
 
-For bLuna:
+Convert bLUNAC to stLUNAC:
 
 ```
 terrad tx wasm execute \
     terra1kc87mu460fwkqte29rquh4hc20m54fxwtsx7gp \
-    '{"send": {"amount": "1","contract": "terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts","msg": "e2NvbnZlcnQ6e319"}}' \
-    [] \
+    '{"send": {"amount": "AMOUNT_OF_UBLUNA_TO_CONVERT","contract": "terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts","msg": "eyJjb252ZXJ0Ijp7fX0="}}' \
+    0uluna \
     --from=YOUR_TERRA_ADDRESS_HERE \
     --node="http://public-node.terra.dev:26657" \
     --chain-id=columbus-5 \
@@ -267,9 +277,9 @@ That operation is needed to autocompaund rewards
 
 ```
 terrad tx wasm execute \
-    terra1kc87mu460fwkqte29rquh4hc20m54fxwtsx7gp \
+    terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts \
     '{"update_global_index": {}}' \
-    [] \
+    0uluna \
     --from=YOUR_TERRA_ADDRESS_HERE \
     --node="http://public-node.terra.dev:26657" \
     --chain-id=columbus-5 \
@@ -285,5 +295,10 @@ terrad tx wasm execute \
 | Name | Value | How to check |
 | --- | --- | --- |
 | Hub address | terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts | https://docs.terra.lido.fi/introduction/deployed-contracts#mainnet |
-| Public RPC node | http://public-node.terra.dev:26657 | 
-| Chain ID | columbus-5
+| bLuna Reward | terra17yap3mhph35pcwvhza38c2lkj7gzywzy05h7l0 | https://docs.terra.lido.fi/introduction/deployed-contracts#mainnet |
+| Bonded LUNA \(bLUNA\) | terra1kc87mu460fwkqte29rquh4hc20m54fxwtsx7gp | https://docs.terra.lido.fi/introduction/deployed-contracts#mainnet |
+| Staked LUNA \(stLUNA\) | terra1yg3j2s986nyp5z7r2lvt0hx3r0lnd7kwvwwtsc | https://docs.terra.lido.fi/introduction/deployed-contracts#mainnet |
+| Public RPC node | http://public-node.terra.dev:26657 | |
+| Chain ID | columbus-5 | |
+| Unbond message | eyJ1bmJvbmQiOnt9fQ== | https://base64.guru/converter/decode/text |
+| Convert message | eyJjb252ZXJ0Ijp7fX0= | https://base64.guru/converter/decode/text |
