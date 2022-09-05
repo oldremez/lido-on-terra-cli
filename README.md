@@ -20,9 +20,8 @@ To proceed using this manual, one need to:
 
 1. Install terrad (please follow the official manual
 ([[1]](https://docs.terra.money/docs/develop/terrad/install-terrad.html)
-[[2]](https://docs.terra.money/docs/develop/terrad/terrad-mac.html]))
-2. [Congigure one's keys via keychain]
-(https://docs.terra.money/docs/develop/terrad/subcommands.html#keys-add)
+[[2]](https://docs.terra.money/docs/develop/terrad/terrad-mac.html))
+2. [Congigure one's keys via keychain](https://docs.terra.money/docs/develop/terrad/subcommands.html#keys-add)
 
 If you have an issue with recovering your key (e.g. you lost your seed phrase)
 you can create a new account and send your tokens there via wallet extension.
@@ -57,11 +56,11 @@ Because all the operations are made with ustluna or ubluna (`u` here stands for
 stluna and so on) you might be interested into knowing your bLUNAC/stLUNAC
 balances in ustluna or ubluna. 
 
-E.g., if your bal
+So, to bond 1 bLUNA, you need to stake 1000000uluna.
 
-To do so, you can use the following commands:
+To do so, you can use the following commands.
 
-For stLUNAC
+For stLUNAC:
 
 ```
 terrad query wasm contract-store \
@@ -90,36 +89,40 @@ terrad query bank balances \
     --chain-id=columbus-5
 ```
 
-### Bond LUNAC to stLUNAC or bLUNAC
+### Bond LUNC to stLUNAC or bLUNAC
 
-bLuna
+To stake your LUNC and mint bLUNAC or stLUNAC use the following commands.
+
+To get bLUNAC:
 
 ```
 terrad tx wasm execute \
     terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts \
     '{"bond":{}}' \
-    1uluna \
+    AMOUNT_OF_ULUNA_TO_BONDuluna \
     --from=YOUR_TERRA_ADDRESS_HERE \
     --node="http://public-node.terra.dev:26657" \
     --chain-id=columbus-5 \
     --fees=6000000uusd \
     --gas=30000000 \
-    -b block
+    -b block \
+    --yes
 ```
 
-stLuna
+To get stLUNAC:
 
 ```
 terrad tx wasm execute \
     terra1mtwph2juhj0rvjz7dy92gvl6xvukaxu8rfv8ts \
     '{"bond_for_stluna":{}}' \
-    1uluna \
+    AMOUNT_OF_ULUNA_TO_BONDuluna \
     --from=YOUR_TERRA_ADDRESS_HERE \
     --node="http://public-node.terra.dev:26657" \
     --chain-id=columbus-5 \
     --fees=6000000uusd \
     --gas=30000000 \
-    -b block
+    -b block \
+    --yes
 ```
 
 ### Unbond stLUNAC or bLUNAC
@@ -144,7 +147,8 @@ terrad tx wasm execute \
     --chain-id=columbus-5 \
     --fees=6000000uusd \
     --gas=30000000 \
-    -b block
+    -b block \
+    --yes
 ```
 
 For bLuna:
@@ -159,12 +163,13 @@ terrad tx wasm execute \
     --chain-id=columbus-5 \
     --fees=6000000uusd \
     --gas=30000000 \
-    -b block
+    -b block \
+    --yes
 ```
 
 ### Claim rewards
 
-To check the amount of rewards to be claimed
+To check the amount of rewards that can be claimed:
 
 ```
 terrad query wasm contract-store \
@@ -174,7 +179,7 @@ terrad query wasm contract-store \
     --chain-id=columbus-5
 ```
 
-To claim rewards you can use 
+To claim rewards use the command:
 
 ```
 terrad tx wasm execute \
@@ -186,12 +191,13 @@ terrad tx wasm execute \
     --chain-id=columbus-5 \
     --fees=6000000uusd \
     --gas=30000000 \
-    -b block
+    -b block \
+    --yes
 ```
 
 ### Withdraw unbonded LUNAC
 
-Check amount to withdraw
+Check amount to be withdrawn:
 
 ```
 terrad query wasm contract-store \
@@ -201,7 +207,7 @@ terrad query wasm contract-store \
     --chain-id=columbus-5
 ```
 
-Actual withdraw
+To actualy withdraw rewards:
 
 ```
 terrad tx wasm execute \
@@ -213,7 +219,8 @@ terrad tx wasm execute \
     --chain-id=columbus-5 \
     --fees=6000000uusd \
     --gas=30000000 \
-    -b block
+    -b block \
+    --yes
 ```
 
 #### Unbond wen???
@@ -237,7 +244,8 @@ terrad tx wasm execute \
     --chain-id=columbus-5 \
     --fees=6000000uusd \
     --gas=30000000 \
-    -b block
+    -b block \
+    --yes
 ```
 
 For bLuna:
@@ -252,12 +260,9 @@ terrad tx wasm execute \
     --chain-id=columbus-5 \
     --fees=6000000uusd \
     --gas=30000000 \
-    -b block
+    -b block \
+    --yes
 ```
-
-{
-  "convert": {}
-}
 
 ## Update global index
 
@@ -273,7 +278,8 @@ terrad tx wasm execute \
     --chain-id=columbus-5 \
     --fees=6000000uusd \
     --gas=30000000 \
-    -b block
+    -b block \
+    --yes
 ```
 
 
